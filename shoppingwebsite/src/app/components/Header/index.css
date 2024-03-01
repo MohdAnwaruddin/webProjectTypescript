@@ -1,0 +1,58 @@
+
+.header {
+
+     min-width: 10vw;
+     display: flex;
+     flex-direction: row;
+     gap: 9.3vw;
+    color: black;
+    padding: 25px;
+    background-color: paleturquoise;
+    margin-left: 0vw;
+  margin-right: 0vw;
+    
+
+}
+
+.logo {
+        padding-left: 2rem;
+    font-weight: bolder;
+    font-size: 20px;
+    margin-left: 50px;
+}
+
+.navigation-item-text{
+    min-width: max-content;
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+.navigation-items {
+
+    display: flex;
+    flex-direction: row;
+    gap: 7.5vw;
+    margin-left: 8px;
+
+}
+
+.user-section {
+
+    display: flex;
+    flex-direction: row;
+    gap: 5vw;
+    justify-content: flex-end;
+    margin-left: 9px;
+
+
+}
+
+.user-section-items{
+
+    display: flex;
+    flex-direction: row;
+    gap: 7vw;
+    justify-content: flex-end;
+    font-weight: bolder;
+    font-size: 20px;
+}

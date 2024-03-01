@@ -1,0 +1,39 @@
+/* styles.css */
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Your custom CSS here */
+
+
+.product-card {
+    @apply p-5 m-4 border border-white rounded-xl;
+}
+
+.products-container {
+    @apply w-full bg-lightgray justify-center p-0 ml-0;
+}
+
+.title {
+    @apply text-center py-2 text-2xl font-bold bg-lightseagreen;
+}
+
+.product {
+    @apply grid grid-cols-4 gap-5 justify-items-center mt-0 bg-cadetblue ml-0 p-4;
+}
+
+.image {
+    @apply p-4;
+}
+
+
+/* .description {
+    @apply  to-purple-600 text-white p-4 rounded-md;
+  } */
+
+  .description {
+    @apply bg-gradient-to-r from-green-400 p-4 rounded-md;
+  }
+  
+  

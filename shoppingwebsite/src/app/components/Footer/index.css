@@ -1,0 +1,15 @@
+
+.footer {
+
+    min-width: 10vw;
+    display: flex;
+    flex-direction: row;
+    gap: 9.3vw;
+   color: black;
+   padding: 62px;
+   background-color: paleturquoise;
+   margin-left: 0vw;
+ margin-right: 0vw;
+   
+
+}

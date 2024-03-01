@@ -1,0 +1,37 @@
+
+
+.login-form {
+    border:1px solid black;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    align-items: center;
+    margin-top: 25vh;
+    margin-left: 50vh;
+    border-radius: 16px;
+    padding: 15px;
+    background-color: white;
+}
+
+.input-field {
+
+    border-radius: 16px;
+    margin: 1rem;
+    background-color: rgb(229, 221, 221);
+    padding: 10px;
+
+}
+
+.title {
+    padding: 10px;
+
+}
+
+.button {
+    border-radius: 16px;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    margin: 2rem;
+}
