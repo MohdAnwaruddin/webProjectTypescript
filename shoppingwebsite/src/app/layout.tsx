@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Head from "next/head";
 import HomeBanner from "./components/HomeBanner";
 import Footer from "./components/Footer";
+import { AuthContextProvider } from '@/context/AuthContext';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -21,9 +22,11 @@ export default function RootLayout({
     <html lang="en">
      <meta name="referrer" content="no-referrer"></meta>
        <body className={inter.className}>
+       <AuthContextProvider>
        <Header />
         {children}
       <Footer />
+      </AuthContextProvider>
       {/* <Head> <Header /> </Head> */}
       </body>
      

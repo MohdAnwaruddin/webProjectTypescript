@@ -23,7 +23,8 @@ const Header = () => {
         <div className="user-section">
             <ul className="user-section-items">
             <Link href="/my-account"> My Account  </Link>
-                <Link href="/login"> Login/Signup</Link>
+                <Link href="/login"> Login</Link>
+                <Link href="/signup"> Signup</Link>
                 <Link href="/cart"> Cart </Link>
             </ul>
         </div>
