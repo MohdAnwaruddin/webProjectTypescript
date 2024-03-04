@@ -46,6 +46,8 @@ const Login = () => {
           config
         );
         console.log(response.data.token);
+        console.log(response.data.user._id);
+        localStorage.setItem('_id', response.data.user._id);
         localStorage.setItem('token', response.data.token);
 
         auth.login();

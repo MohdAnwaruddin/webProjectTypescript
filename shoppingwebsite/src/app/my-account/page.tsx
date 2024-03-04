@@ -1,49 +1,126 @@
-import "./index.css"
+'use client';
 
-const Page = () => {
-    return(
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
-        <div className="formpage">
+const Data = () => {
+    const router = useRouter();
+    const [formData, setFormData] = useState({
+        username: '',
+        email: '',
+        password: '',
+    });
 
-            <div className="title">
-                <h1 className="header"> Your Account Details </h1>
-            </div>
+    const { username, email, password } = formData;
+    const [error, setError] = useState('');
 
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const id = localStorage.getItem('_id');
+                if (id) {
+                    const response = await axios.get(`http://localhost:3001/user/users/${id}`);
+                    const userData = response.data;
+                    setFormData({
+                        username: userData.username || '',
+                        email: userData.email || '',
+                        password: userData.password || '',
+                    });
+                }
+            } catch (err: any) {
+                console.error(err);
+                setError(err.response?.data?.errors || 'Something went wrong');
+            }
+        };
 
-        <form className="form-container">
+        fetchData();
+    }, []);
 
+    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => { // Specify the type of e
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
 
-        <div  className="form">
-              
-        <div className="fullName">
-            <label >Full Name :</label>
-            <input type="text" id="fullName" name="fullName"   />
+    const deleteuser = async () => {
+        try {
+            const id = localStorage.getItem('_id');
+            const response = await axios.delete(`http://localhost:3001/user/users/${id}`);
+            localStorage.removeItem('token');
+            localStorage.removeItem('_id');
+            router.push('/signup');
+        } catch (err) {
+            console.error(err);
+            if (err instanceof Error) {
+                setError(err.message);
+            } else {
+                setError('Something went wrong');
+            }
+        }
+    
+      };
+
+    const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => { // Specify the type of e
+        e.preventDefault();
+        // Your form submission logic goes here
+    };
+
+    return (
+        <div className="login-form">
+            <h1>Loged user data</h1>
+            <form onSubmit={onSubmit}>
+                <div>
+                <label >User Name :</label>
+                    <input
+                        type="text"
+                        placeholder="Username"
+                        name="username"
+                        value={username}
+                        onChange={onChange}
+                        className="input-field"
+                    />
+                </div>
+                <div>
+                <label >E-mail :</label>
+                    <input
+                        type="text"
+                        placeholder="Email"
+                        name="email"
+                        value={email}
+                        onChange={onChange}
+                        className="input-field"
+                    />
+                </div>
+                <div>
+                <label >Current password :</label>
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        name="password"
+                        value={password}
+                        onChange={onChange}
+                        className="input-field"
+                    />
+                </div>
+                <div>
+                <label >New password :</label>
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        name="password"
+                        value=""
+                        onChange={onChange}
+                        className="input-field"
+                    />
+                </div>
+                {/* Display error message if there's an error */}
+                {error && <p className="error-message">{error}</p>}
+                <button type="submit" className="submit-button">Update </button>
+                <br></br>
+                <button onClick={deleteuser}>Delete</button>
+            </form>
+            
         </div>
-        
-        <div className="emailId">
-            <label > Email Id : </label>
-            <input type="text" id="emailId" name="emailId"  />
-        </div>
-
-        <div className="contactNo">
-            <label > Contact No : </label>
-            <input type="text" id="contactNo" name="contactNo"   />
-        </div>
-
-        <div className="gender">
-            <label > Gender : </label>
-            <input type="text" id="gender" name="gender"  />
-        </div>
-
-        </div>  
-        </form>   
-           
-
-        </div>
-
-     
-
-    )
+    );
 };
 
-export default Page;
+export default Data;

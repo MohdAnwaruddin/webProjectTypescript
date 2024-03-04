@@ -1,11 +1,14 @@
-const express = require('express');
+import express from 'express'
+import {User}   from "../models/users.js";
+
 const router = express.Router();
-const UserModel = require('../models/User');
+//const UserModel = require('../models/User');
 
 // Get all users
 router.get('/users', async (req, res) => {
   try {
-    const users = await UserModel.find();
+    console.log("Get a specific user by ID");
+    const users = await User.find();
     res.json(users);
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });
@@ -16,7 +19,8 @@ router.get('/users', async (req, res) => {
 router.get('/users/:userId', async (req, res) => {
   const userId = req.params.userId;
   try {
-    const user = await UserModel.findById(userId);
+    console.log("Get a specific user by ID");
+    const user = await User.findById(userId);
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
@@ -32,7 +36,7 @@ router.put('/users/:userId', async (req, res) => {
   const { username, email } = req.body;
 
   try {
-    const user = await UserModel.findByIdAndUpdate(
+    const user = await User.findByIdAndUpdate(
       userId,
       { username, email },
       { new: true } // Return the updated user
@@ -53,7 +57,8 @@ router.delete('/users/:userId', async (req, res) => {
   const userId = req.params.userId;
 
   try {
-    const user = await UserModel.findByIdAndDelete(userId);
+    confirm.log("deleting the user");
+    const user = await User.findByIdAndDelete(userId);
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
@@ -63,4 +68,4 @@ router.delete('/users/:userId', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
