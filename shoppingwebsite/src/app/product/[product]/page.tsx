@@ -33,7 +33,7 @@ const fetchProductDetails = async () => {
     })
 
     if(fetchResponse.data.success){
-           
+           console.log(fetchResponse.data.data[0],"details")
         setProductDetails(fetchResponse.data.data[0])
     }
 }
@@ -44,7 +44,7 @@ const fetchProductDetails = async () => {
 const handleAddCart = async() => {
     const updateCartResponse = await axiosInstance.post('/cart/add-product',{
         userId: "12345",
-        id:params.product,
+        productId:params.product,
         quantity: 1
     })
     if(updateCartResponse.data.success){
@@ -100,10 +100,12 @@ const handleUpdateCart = async(operation:any) => {
 const handleDeleteCart = async() => {
     const removeCartResponse = await axiosInstance.post('/cart/delete-product',{
         userId: "12345",
-        id:params.product
+        productId:params.product
     })
-    setIsAddedToCart(false)
-    setQuantity(0)
+    if(removeCartResponse.data.success){
+        setIsAddedToCart(false)
+        setQuantity(0)
+    }
 }
 
 return(
@@ -114,7 +116,7 @@ return(
         </div>
         <div className="product">
             <div className="product-card"> 
-                <img className="image" src={productdetails?.url}  />cd ..
+                <img className="image" src={productdetails?.url}  />
                 <div className="description">
                     <h3>  {productdetails?.title.toUpperCase()} </h3>
                     <h3> Description </h3>

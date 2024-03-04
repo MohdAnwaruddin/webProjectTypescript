@@ -4,6 +4,8 @@ import bodyParser from "body-parser"
 import productRoutes from "./routes/productRoutes.js"
 import   connect   from "./mongoose.js";
 import helmet from 'helmet';
+import userRoutes from "./routes/userRoutes.js"
+
 // import userRoutes from "./routes/userRoutes.js"
 import cartRoutes from "./routes/cartRoutes.js"
 //import userRoutes from "./routes/userRoutes.js"
@@ -58,8 +60,13 @@ app.use(bodyParser.json());
 
 
 app.use('/products', productRoutes);
-// app.use('/user' , userRoutes)
+
 app.use('/cart', cartRoutes)
+
+
+app.use('/user' , userRoutes)
+
+
 
 app.listen(3001, () => { console.log('Server started.') });
 

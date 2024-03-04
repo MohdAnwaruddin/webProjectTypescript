@@ -39,7 +39,9 @@ const login = async function (req, res) {
 
     const token = jwt.sign(payload,secret);
     console.log(secret);
-    res.json({ token: token });
+
+    res.json({  user: user, token: token });
+
   } catch (error) {
     console.error("Error:", error);
     res.status(500).json({ error: "Internal server error" });

@@ -10,8 +10,8 @@ router.route('/add-product').post(cartController.addProduct)
 
 router.route('/fetch-cart').post(cartController.fetchCart)
 
-// router.route('/update-product').post(cartController.updateProduct)
+router.route('/update-product').post(cartController.updateCart)
 
-// router.route('/delete-product').post(cartController.deleteProduct)
+router.route('/delete-product').post(cartController.deleteCart)
 
 export default router;

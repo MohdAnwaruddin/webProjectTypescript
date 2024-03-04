@@ -1,0 +1,9 @@
+
+
+
+.cart-container {
+    @apply p-5 m-4 border border-white   bg-lightseagreen rounded-xl;
+    @apply flex  gap-8; 
+
+
+}

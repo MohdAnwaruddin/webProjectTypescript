@@ -4,7 +4,7 @@
 import "./index.css";
 
 
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import Link from 'next/link';
 import axios from 'axios';
  import AuthContext, { AuthContextType } from '@/context/AuthContext';
@@ -17,6 +17,15 @@ const Login = () => {
     username: '',
     password: '',
   });
+
+
+
+  useEffect(() => {
+        
+    auth.login()
+
+  }, [])
+
 
   const { username, password } = formData;
 
@@ -46,11 +55,12 @@ const Login = () => {
           config
         );
         console.log(response.data.token);
+        localStorage.setItem('_id', response.data.user._id);
         localStorage.setItem('token', response.data.token);
 
         auth.login();
         console.log("login successfull");
-        router.push('/dashboard');
+        router.push('/categories');
       } catch (err: any) {
         console.log(err);
         setError(err.response.data.errors || 'something went wrong');
